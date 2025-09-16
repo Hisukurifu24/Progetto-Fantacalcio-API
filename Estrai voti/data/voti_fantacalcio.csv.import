@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://mhwvwynr6elg"
+
+[deps]
+
+files=["res://Externals/Estrai voti/data/voti_fantacalcio.Squadra.translation", "res://Externals/Estrai voti/data/voti_fantacalcio.Ruolo.translation", "res://Externals/Estrai voti/data/voti_fantacalcio.Voto.translation", "res://Externals/Estrai voti/data/voti_fantacalcio.Fantavoto.translation", "res://Externals/Estrai voti/data/voti_fantacalcio.Gol.translation", "res://Externals/Estrai voti/data/voti_fantacalcio.Assist.translation", "res://Externals/Estrai voti/data/voti_fantacalcio.Rigori.translation", "res://Externals/Estrai voti/data/voti_fantacalcio.Rigori.translation", "res://Externals/Estrai voti/data/voti_fantacalcio.Rigori.translation", "res://Externals/Estrai voti/data/voti_fantacalcio.Gol.translation", "res://Externals/Estrai voti/data/voti_fantacalcio.Autoreti.translation", "res://Externals/Estrai voti/data/voti_fantacalcio.MOTM.translation", "res://Externals/Estrai voti/data/voti_fantacalcio.Bonus.translation"]
+
+source_file="res://Externals/Estrai voti/data/voti_fantacalcio.csv"
+dest_files=["res://Externals/Estrai voti/data/voti_fantacalcio.Squadra.translation", "res://Externals/Estrai voti/data/voti_fantacalcio.Ruolo.translation", "res://Externals/Estrai voti/data/voti_fantacalcio.Voto.translation", "res://Externals/Estrai voti/data/voti_fantacalcio.Fantavoto.translation", "res://Externals/Estrai voti/data/voti_fantacalcio.Gol.translation", "res://Externals/Estrai voti/data/voti_fantacalcio.Assist.translation", "res://Externals/Estrai voti/data/voti_fantacalcio.Rigori.translation", "res://Externals/Estrai voti/data/voti_fantacalcio.Rigori.translation", "res://Externals/Estrai voti/data/voti_fantacalcio.Rigori.translation", "res://Externals/Estrai voti/data/voti_fantacalcio.Gol.translation", "res://Externals/Estrai voti/data/voti_fantacalcio.Autoreti.translation", "res://Externals/Estrai voti/data/voti_fantacalcio.MOTM.translation", "res://Externals/Estrai voti/data/voti_fantacalcio.Bonus.translation"]
+
+[params]
+
+compress=true
+delimiter=0

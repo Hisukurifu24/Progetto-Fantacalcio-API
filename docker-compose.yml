@@ -1,0 +1,26 @@
+services:
+  fantasy-api:
+    build: ./Fantasy-Football-API
+    container_name: fantasy_api
+    environment:
+      # BASE_DIR inside container will point at /app/.. by default, we override to /data-root for clarity
+      - BASE_DIR=/data-root
+    volumes:
+      # NOTE: Paths with spaces must be quoted. Volumes left writable because API now launches Python scrapers on each request.
+      - "./Estrai listone:/data-root/Estrai listone"
+      - "./Estrai voti:/data-root/Estrai voti"
+    ports:
+      - "8000:8000"
+    # Production style start (no reload)
+    command: [ "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "2" ]
+    healthcheck:
+      test: [ "CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/').read()" ]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+# Usage (PowerShell):
+# docker compose build
+# docker compose up -d
+# Browse: http://localhost:8000/docs

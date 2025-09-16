@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://b1pbupi6xosnk"
+
+[deps]
+
+files=["res://Externals/Estrai listone/data/quotazioni_fantacalcio.squadra.translation", "res://Externals/Estrai listone/data/quotazioni_fantacalcio.ruolo.translation", "res://Externals/Estrai listone/data/quotazioni_fantacalcio.quotazione.translation", "res://Externals/Estrai listone/data/quotazioni_fantacalcio.quotazione.translation", "res://Externals/Estrai listone/data/quotazioni_fantacalcio.fvm.translation", "res://Externals/Estrai listone/data/quotazioni_fantacalcio.quotazione.translation", "res://Externals/Estrai listone/data/quotazioni_fantacalcio.quotazione.translation", "res://Externals/Estrai listone/data/quotazioni_fantacalcio.fvm.translation"]
+
+source_file="res://Externals/Estrai listone/data/quotazioni_fantacalcio.csv"
+dest_files=["res://Externals/Estrai listone/data/quotazioni_fantacalcio.squadra.translation", "res://Externals/Estrai listone/data/quotazioni_fantacalcio.ruolo.translation", "res://Externals/Estrai listone/data/quotazioni_fantacalcio.quotazione.translation", "res://Externals/Estrai listone/data/quotazioni_fantacalcio.quotazione.translation", "res://Externals/Estrai listone/data/quotazioni_fantacalcio.fvm.translation", "res://Externals/Estrai listone/data/quotazioni_fantacalcio.quotazione.translation", "res://Externals/Estrai listone/data/quotazioni_fantacalcio.quotazione.translation", "res://Externals/Estrai listone/data/quotazioni_fantacalcio.fvm.translation"]
+
+[params]
+
+compress=true
+delimiter=0

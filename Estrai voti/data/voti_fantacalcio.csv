@@ -1,0 +1,320 @@
+Nome,Squadra,Ruolo,Voto,Fantavoto,Gol,Assist,Rigori_Segnati,Rigori_Sbagliati,Rigori_Parati,Gol_Subiti,Autoreti,MOTM,Bonus_Totali
+Carnesecchi,Atalanta,p,6,5,0,0,0,0,0,-1,0,0,-1
+Bellanova,Atalanta,d,"6,5","6,5",0,0,0,0,0,0,0,0,0
+Scalvini,Atalanta,d,7,10,1,0,0,0,0,0,0,0,3
+Kossounou,Atalanta,d,"6,5","6,5",0,0,0,0,0,0,0,0,0
+Hien,Atalanta,d,"6,5","6,5",0,0,0,0,0,0,0,0,0
+Bernasconi,Atalanta,d,55,55,0,0,0,0,0,0,0,0,0
+De Roon,Atalanta,c,7,7,0,0,0,0,0,0,0,0,0
+Pasalic,Atalanta,c,"6,5","6,5",0,0,0,0,0,0,0,0,0
+Maldini,Atalanta,c,6,6,0,0,0,0,0,0,0,0,0
+Brescianini,Atalanta,c,6,6,0,0,0,0,0,0,0,0,0
+Samardzic,Atalanta,c,6,6,0,0,0,0,0,0,0,0,0
+Musah,Atalanta,c,6,6,0,0,0,0,0,0,0,0,0
+Zalewski,Atalanta,c,"7,5","11,5",1,1,0,0,0,0,0,0,4
+Sulemana K.,Atalanta,a,6,6,0,0,0,0,0,0,0,0,0
+De Ketelaere,Atalanta,a,8,14,2,0,0,0,0,0,0,1,7
+Krstovic,Atalanta,a,"6,5","8,5",0,2,0,0,0,0,0,0,2
+Skorupski,Bologna,p,6,"4,5",0,0,0,0,0,-1,0,0,-1
+Lykogiannis,Bologna,d,"5,5","5,5",0,0,0,0,0,0,0,0,0
+Zortea,Bologna,d,"5,5","5,5",0,0,0,0,0,0,0,0,0
+Miranda J.,Bologna,d,"5,5",5,0,0,0,0,0,0,0,0,0
+Lucumì,Bologna,d,"5,5","5,5",0,0,0,0,0,0,0,0,0
+Heggem,Bologna,d,6,6,0,0,0,0,0,0,0,0,0
+Bernardeschi,Bologna,c,"5,5","5,5",0,0,0,0,0,0,0,0,0
+Freuler,Bologna,c,"5,5","5,5",0,0,0,0,0,0,0,0,0
+Orsolini,Bologna,c,"5,5","5,5",0,0,0,0,0,0,0,0,0
+Odgaard,Bologna,c,6,6,0,0,0,0,0,0,0,0,0
+Ferguson,Bologna,c,6,6,0,0,0,0,0,0,0,0,0
+Fabbian,Bologna,c,"5,5","5,5",0,0,0,0,0,0,0,0,0
+Rowe,Bologna,c,6,6,0,0,0,0,0,0,0,0,0
+Cambiaghi,Bologna,a,"5,5","5,5",0,0,0,0,0,0,0,0,0
+Castro S.,Bologna,a,"5,5","5,5",0,0,0,0,0,0,0,0,0
+Dallinga,Bologna,a,55,55,0,0,0,0,0,0,0,0,0
+Caprile,Cagliari,p,7,7,0,0,0,0,0,0,0,0,0
+Luperto,Cagliari,d,"6,5","6,5",0,0,0,0,0,0,0,0,0
+Mina,Cagliari,d,7,10,1,0,0,0,0,0,0,1,4
+Zappa,Cagliari,d,6,"5,5",0,0,0,0,0,0,0,0,0
+Obert,Cagliari,d,"6,5","6,5",0,0,0,0,0,0,0,0,0
+Palestra,Cagliari,d,"6,5","6,5",0,0,0,0,0,0,0,0,0
+Zè Pedro,Cagliari,d,55,55,0,0,0,0,0,0,0,0,0
+Deiola,Cagliari,c,6,"5,5",0,0,0,0,0,0,0,0,0
+Gaetano,Cagliari,c,6,6,0,0,0,0,0,0,0,0,0
+Adopo,Cagliari,c,6,6,0,0,0,0,0,0,0,0,0
+Folorunsho,Cagliari,c,6,6,0,0,0,0,0,0,0,0,0
+Prati,Cagliari,c,6,6,0,0,0,0,0,0,0,0,0
+Felici,Cagliari,c,7,10,1,0,0,0,0,0,0,0,3
+Belotti,Cagliari,a,"5,5","5,5",0,0,0,0,0,0,0,0,0
+Esposito Se.,Cagliari,a,6,"5,5",0,0,0,0,0,0,0,0,0
+Borrelli,Cagliari,a,6,6,0,0,0,0,0,0,0,0,0
+Butez,Como,p,6,5,0,0,0,0,0,-1,0,0,-1
+Vojvoda,Como,d,"5,5","5,5",0,0,0,0,0,0,0,0,0
+Valle,Como,d,6,"5,5",0,0,0,0,0,0,0,0,0
+Ramon,Como,d,"5,5","4,5",0,0,0,0,0,0,0,0,0
+Kempf,Como,d,6,6,0,0,0,0,0,0,0,0,0
+Sergi Roberto,Como,c,"5,5",5,0,0,0,0,0,0,0,0,0
+Caqueret,Como,c,"6,5","6,5",0,0,0,0,0,0,0,0,0
+Da Cunha,Como,c,6,6,0,0,0,0,0,0,0,0,0
+Perrone,Como,c,"5,5","5,5",0,0,0,0,0,0,0,0,0
+Paz N.,Como,c,7,10,1,0,0,0,0,0,0,1,4
+Baturina,Como,c,55,55,0,0,0,0,0,0,0,0,0
+Morata,Como,a,"5,5","5,5",0,0,0,0,0,0,0,0,0
+Douvikas,Como,a,6,6,0,0,0,0,0,0,0,0,0
+Addai,Como,a,6,6,0,0,0,0,0,0,0,0,0
+Kuhn,Como,a,"6,5","6,5",0,0,0,0,0,0,0,0,0
+Rodriguez Je.,Como,a,"5,5","5,5",0,0,0,0,0,0,0,0,0
+Audero,Cremonese,p,"7,5","7,5",0,0,0,0,0,0,0,0,0
+Bianchetti,Cremonese,d,"5,5","5,5",0,0,0,0,0,0,0,0,0
+Pezzella Giu.,Cremonese,d,"5,5","5,5",0,0,0,0,0,0,0,0,0
+Terracciano F.,Cremonese,d,"5,5","5,5",0,0,0,0,0,0,0,0,0
+Baschirotto,Cremonese,d,5,5,0,0,0,0,0,0,0,0,0
+Floriani Mussolini,Cremonese,d,55,55,0,0,0,0,0,0,0,0,0
+Grassi,Cremonese,c,6,6,0,0,0,0,0,0,0,0,0
+Vazquez,Cremonese,c,6,6,0,0,0,0,0,0,0,0,0
+Bondo,Cremonese,c,"5,5","5,5",0,0,0,0,0,0,0,0,0
+Zerbin,Cremonese,c,"5,5","5,5",0,0,0,0,0,0,0,0,0
+Sarmiento J.,Cremonese,c,6,6,0,0,0,0,0,0,0,0,0
+Collocolo,Cremonese,c,"5,5",5,0,0,0,0,0,0,0,0,0
+Vandeputte,Cremonese,c,"5,5","5,5",0,0,0,0,0,0,0,0,0
+Sanabria,Cremonese,a,"5,5","5,5",0,0,0,0,0,0,0,0,0
+Bonazzoli,Cremonese,a,"5,5","5,5",0,0,0,0,0,0,0,0,0
+Vardy,Cremonese,a,6,6,0,0,0,0,0,0,0,0,0
+De Gea,Fiorentina,p,7,4,0,0,0,0,0,-3,0,0,-3
+Gosens,Fiorentina,d,"6,5","6,5",0,0,0,0,0,0,0,0,0
+Ranieri L.,Fiorentina,d,6,9,1,0,0,0,0,0,0,0,3
+Pongracic,Fiorentina,d,5,5,0,0,0,0,0,0,0,0,0
+Viti,Fiorentina,d,55,55,0,0,0,0,0,0,0,0,0
+Dodò,Fiorentina,d,6,6,0,0,0,0,0,0,0,0,0
+Lamptey,Fiorentina,d,55,55,0,0,0,0,0,0,0,0,0
+Comuzzo,Fiorentina,d,5,5,0,0,0,0,0,0,0,0,0
+Mandragora,Fiorentina,c,6,6,0,0,0,0,0,0,0,0,0
+Nicolussi Caviglia,Fiorentina,c,6,6,0,0,0,0,0,0,0,0,0
+Fagioli,Fiorentina,c,"5,5","5,5",0,0,0,0,0,0,0,0,0
+Sohm,Fiorentina,c,"5,5","5,5",0,0,0,0,0,0,0,0,0
+Fazzini,Fiorentina,c,"6,5","6,5",0,0,0,0,0,0,0,0,0
+Dzeko,Fiorentina,a,5,5,0,0,0,0,0,0,0,0,0
+Kean,Fiorentina,a,"5,5","5,5",0,0,0,0,0,0,0,0,0
+Piccoli,Fiorentina,a,"5,5","5,5",0,0,0,0,0,0,0,0,0
+Leali,Genoa,p,"6,5","5,5",0,0,0,0,0,-1,0,0,-1
+Sabelli,Genoa,d,6,6,0,0,0,0,0,0,0,0,0
+Martin,Genoa,d,6,6,0,0,0,0,0,0,0,0,0
+Vasquez,Genoa,d,6,6,0,0,0,0,0,0,0,0,0
+Ostigard,Genoa,d,6,"5,5",0,0,0,0,0,0,0,0,0
+Norton-Cuffy,Genoa,d,"6,5","6,5",0,0,0,0,0,0,0,0,0
+Malinovskyi,Genoa,c,"5,5",5,0,0,0,0,0,0,0,0,0
+Messias,Genoa,c,"6,5","6,5",0,0,0,0,0,0,0,0,0
+Frendrup,Genoa,c,"5,5","5,5",0,0,0,0,0,0,0,0,0
+Ellertsson,Genoa,c,"5,5","5,5",0,0,0,0,0,0,0,0,0
+Carboni V.,Genoa,c,"6,5","6,5",0,0,0,0,0,0,0,0,0
+Masini,Genoa,c,"5,5","5,5",0,0,0,0,0,0,0,0,0
+Colombo,Genoa,a,5,5,0,0,0,0,0,0,0,0,0
+Ekuban,Genoa,a,7,10,1,0,0,0,0,0,0,0,3
+Ekhator,Genoa,a,55,55,0,0,0,0,0,0,0,0,0
+Sommer,Inter,p,5,1,0,0,0,0,0,-4,0,0,-4
+Dimarco,Inter,d,"6,5","7,5",0,1,0,0,0,0,0,0,1
+Acerbi,Inter,d,6,6,0,0,0,0,0,0,0,0,0
+Bastoni,Inter,d,"5,5","5,5",0,0,0,0,0,0,0,0,0
+Darmian,Inter,d,55,55,0,0,0,0,0,0,0,0,0
+Akanji,Inter,d,6,6,0,0,0,0,0,0,0,0,0
+Dumfries,Inter,d,6,6,0,0,0,0,0,0,0,0,0
+Carlos Augusto,Inter,d,"6,5","7,5",0,1,0,0,0,0,0,0,1
+Zielinski,Inter,c,6,7,0,1,0,0,0,0,0,0,1
+Barella,Inter,c,"5,5","5,5",0,0,0,0,0,0,0,0,0
+Calhanoglu,Inter,c,"7,5","13,5",2,0,0,0,0,0,0,0,6
+Mkhitaryan,Inter,c,"5,5",5,0,0,0,0,0,0,0,0,0
+Sucic P.,Inter,c,55,55,0,0,0,0,0,0,0,0,0
+Martinez L.,Inter,a,5,5,0,0,0,0,0,0,0,0,0
+Thuram,Inter,a,7,10,1,0,0,0,0,0,0,0,3
+Bonny,Inter,a,"5,5","5,5",0,0,0,0,0,0,0,0,0
+Di Gregorio,Juventus,p,6,3,0,0,0,0,0,-3,0,0,-3
+Bremer,Juventus,d,"7,5","9,5",0,2,0,0,0,0,0,0,2
+Kalulu,Juventus,d,"5,5","5,5",0,0,0,0,0,0,0,0,0
+Gatti,Juventus,d,6,6,0,0,0,0,0,0,0,0,0
+Cabal,Juventus,d,"5,5","5,5",0,0,0,0,0,0,0,0,0
+Kelly L.,Juventus,d,7,10,1,0,0,0,0,0,0,0,3
+Joao Mario,Juventus,d,55,55,0,0,0,0,0,0,0,0,0
+Locatelli,Juventus,c,"6,5",6,0,0,0,0,0,0,0,0,0
+McKennie,Juventus,c,6,6,0,0,0,0,0,0,0,0,0
+Thuram K.,Juventus,c,7,10,1,0,0,0,0,0,0,0,3
+Koopmeiners,Juventus,c,5,"4,5",0,0,0,0,0,0,0,0,0
+Adzic,Juventus,c,"7,5","10,5",1,0,0,0,0,0,0,0,3
+Vlahovic,Juventus,a,5,5,0,0,0,0,0,0,0,0,0
+David,Juventus,a,"6,5","7,5",0,1,0,0,0,0,0,0,1
+Openda,Juventus,a,6,6,0,0,0,0,0,0,0,0,0
+Yildiz,Juventus,a,7,11,1,1,0,0,0,0,0,1,5
+Provedel,Lazio,p,6,5,0,0,0,0,0,-1,0,0,-1
+Romagnoli,Lazio,d,"5,5","5,5",0,0,0,0,0,0,0,0,0
+Marusic,Lazio,d,6,"5,5",0,0,0,0,0,0,0,0,0
+Tavares N.,Lazio,d,"5,5","5,5",0,0,0,0,0,0,0,0,0
+Gila,Lazio,d,"6,5","6,5",0,0,0,0,0,0,0,0,0
+Cataldi,Lazio,c,6,6,0,0,0,0,0,0,0,0,0
+Zaccagni,Lazio,c,"6,5","6,5",0,0,0,0,0,0,0,0,0
+Guendouzi,Lazio,c,"5,5","5,5",0,0,0,0,0,0,0,0,0
+Rovella,Lazio,c,6,"5,5",0,0,0,0,0,0,0,0,0
+Belahyane,Lazio,c,"5,5",5,0,0,0,0,0,0,0,0,0
+Isaksen,Lazio,c,55,55,0,0,0,0,0,0,0,0,0
+Dele-Bashiru,Lazio,c,"5,5","5,5",0,0,0,0,0,0,0,0,0
+Pedro,Lazio,a,6,6,0,0,0,0,0,0,0,0,0
+Cancellieri,Lazio,a,"5,5","5,5",0,0,0,0,0,0,0,0,0
+Dia,Lazio,a,"5,5","5,5",0,0,0,0,0,0,0,0,0
+Castellanos,Lazio,a,"5,5","5,5",0,0,0,0,0,0,0,0,0
+Falcone,Lecce,p,"5,5","1,5",0,0,0,0,0,-4,0,0,-4
+Gallo,Lecce,d,"4,5","4,5",0,0,0,0,0,0,0,0,0
+Gaspar K.,Lecce,d,"4,5","4,5",0,0,0,0,0,0,0,0,0
+Tiago Gabriel,Lecce,d,55,55,0,0,0,0,0,0,0,0,0
+Veiga D.,Lecce,d,6,6,0,0,0,0,0,0,0,0,0
+Kouassi,Lecce,d,"5,5","5,5",0,0,0,0,0,0,0,0,0
+Siebert,Lecce,d,4,4,0,0,0,0,0,0,0,0,0
+Sottil,Lecce,c,"5,5","5,5",0,0,0,0,0,0,0,0,0
+Coulibaly L.,Lecce,c,"5,5","5,5",0,0,0,0,0,0,0,0,0
+Ramadani,Lecce,c,5,5,0,0,0,0,0,0,0,0,0
+Pierotti,Lecce,c,"5,5","5,5",0,0,0,0,0,0,0,0,0
+Tete Morente,Lecce,c,5,5,0,0,0,0,0,0,0,0,0
+Sala A.,Lecce,c,"5,5","5,5",0,0,0,0,0,0,0,0,0
+Camarda,Lecce,a,"5,5","5,5",0,0,0,0,0,0,0,0,0
+N'Dri,Lecce,a,7,10,1,0,0,0,0,0,0,0,3
+Stulic,Lecce,a,"5,5","5,5",0,0,0,0,0,0,0,0,0
+Terracciano,Milan,p,6,6,0,0,0,0,0,0,0,0,0
+Maignan,Milan,p,6,6,0,0,0,0,0,0,0,0,0
+Gabbia,Milan,d,"6,5","6,5",0,0,0,0,0,0,0,0,0
+Tomori,Milan,d,6,"5,5",0,0,0,0,0,0,0,0,0
+Pavlovic,Milan,d,6,6,0,0,0,0,0,0,0,0,0
+Estupinan,Milan,d,6,"5,5",0,0,0,0,0,0,0,0,0
+De Winter,Milan,d,6,6,0,0,0,0,0,0,0,0,0
+Rabiot,Milan,c,"6,5","6,5",0,0,0,0,0,0,0,0,0
+Pulisic,Milan,c,7,7,0,0,0,0,0,0,0,0,0
+Modric,Milan,c,"7,5","10,5",1,0,0,0,0,0,0,1,4
+Loftus-Cheek,Milan,c,"6,5","6,5",0,0,0,0,0,0,0,0,0
+Fofana Y.,Milan,c,6,6,0,0,0,0,0,0,0,0,0
+Saelemaekers,Milan,c,"6,5",7,0,1,0,0,0,0,0,0,1
+Ricci S.,Milan,c,"6,5","6,5",0,0,0,0,0,0,0,0,0
+Nkunku,Milan,a,55,55,0,0,0,0,0,0,0,0,0
+Gimenez,Milan,a,5,5,0,0,0,0,0,0,0,0,0
+Milinkovic-Savic V.,Napoli,p,"5,5","4,5",0,0,0,0,0,-1,0,0,-1
+Spinazzola,Napoli,d,"6,5","7,5",0,1,0,0,0,0,0,0,1
+Buongiorno,Napoli,d,6,6,0,0,0,0,0,0,0,0,0
+Di Lorenzo,Napoli,d,"6,5","6,5",0,0,0,0,0,0,0,0,0
+Olivera,Napoli,d,6,6,0,0,0,0,0,0,0,0,0
+Beukema,Napoli,d,7,10,1,0,0,0,0,0,0,0,3
+Politano,Napoli,c,"6,5","6,5",0,0,0,0,0,0,0,0,0
+De Bruyne,Napoli,c,7,10,0,0,1,0,0,0,0,0,3
+Zambo Anguissa,Napoli,c,"6,5","7,5",0,1,0,0,0,0,0,1,2
+Lobotka,Napoli,c,6,6,0,0,0,0,0,0,0,0,0
+Elmas,Napoli,c,6,6,0,0,0,0,0,0,0,0,0
+McTominay,Napoli,c,"6,5","6,5",0,0,0,0,0,0,0,0,0
+Gilmour,Napoli,c,55,55,0,0,0,0,0,0,0,0,0
+Neres,Napoli,c,6,6,0,0,0,0,0,0,0,0,0
+Hojlund,Napoli,a,7,10,1,0,0,0,0,0,0,0,3
+Lucca,Napoli,a,6,6,0,0,0,0,0,0,0,0,0
+Suzuki,Parma,p,5,3,0,0,0,0,0,-2,0,0,-2
+Valeri,Parma,d,6,6,0,0,0,0,0,0,0,0,0
+Circati,Parma,d,6,6,0,0,0,0,0,0,0,0,0
+Delprato,Parma,d,"5,5","5,5",0,0,0,0,0,0,0,0,0
+Lovik,Parma,d,6,6,0,0,0,0,0,0,0,0,0
+Ndiaye,Parma,d,"5,5","5,5",0,0,0,0,0,0,0,0,0
+Estevez,Parma,c,55,55,0,0,0,0,0,0,0,0,0
+Oristanio,Parma,c,6,6,0,0,0,0,0,0,0,0,0
+Bernabè,Parma,c,"6,5","6,5",0,0,0,0,0,0,0,0,0
+Keita M.,Parma,c,55,55,0,0,0,0,0,0,0,0,0
+Ordonez C.,Parma,c,"5,5",5,0,0,0,0,0,0,0,0,0
+Sorensen O.,Parma,c,"5,5","5,5",0,0,0,0,0,0,0,0,0
+Cutrone,Parma,a,5,5,0,0,0,0,0,0,0,0,0
+Djuric,Parma,a,55,55,0,0,0,0,0,0,0,0,0
+Almqvist,Parma,a,"5,5","5,5",0,0,0,0,0,0,0,0,0
+Pellegrino M.,Parma,a,"5,5","5,5",0,0,0,0,0,0,0,0,0
+Semper,Pisa,p,6,5,0,0,0,0,0,-1,0,0,-1
+Caracciolo A.,Pisa,d,"5,5",5,0,0,0,0,0,0,0,0,0
+Mateus Lusuardi,Pisa,d,6,6,0,0,0,0,0,0,0,0,0
+Bonfanti,Pisa,d,"6,5","6,5",0,0,0,0,0,0,0,0,0
+Canestrelli,Pisa,d,5,5,0,0,0,0,0,0,0,0,0
+Angori,Pisa,d,"5,5","5,5",0,0,0,0,0,0,0,0,0
+Leris,Pisa,c,6,6,0,0,0,0,0,0,0,0,0
+Tramoni M.,Pisa,c,"5,5","5,5",0,0,0,0,0,0,0,0,0
+Stengs,Pisa,c,55,55,0,0,0,0,0,0,0,0,0
+Aebischer,Pisa,c,5,5,0,0,0,0,0,0,0,0,0
+Akinsanmiro,Pisa,c,6,6,0,0,0,0,0,0,0,0,0
+Piccinini G.,Pisa,c,55,55,0,0,0,0,0,0,0,0,0
+Tourè I.,Pisa,c,"6,5","6,5",0,0,0,0,0,0,0,0,0
+Nzola,Pisa,a,6,6,0,0,0,0,0,0,0,0,0
+Moreo,Pisa,a,"5,5","5,5",0,0,0,0,0,0,0,0,0
+Meister,Pisa,a,6,6,0,0,0,0,0,0,0,0,0
+Svilar,Roma,p,"6,5","5,5",0,0,0,0,0,-1,0,0,-1
+Mancini,Roma,d,6,6,0,0,0,0,0,0,0,0,0
+N'Dicka,Roma,d,6,6,0,0,0,0,0,0,0,0,0
+Celik,Roma,d,55,55,0,0,0,0,0,0,0,0,0
+Angelino,Roma,d,"5,5",5,0,0,0,0,0,0,0,0,0
+Hermoso,Roma,d,6,6,0,0,0,0,0,0,0,0,0
+Wesley,Roma,d,5,"4,5",0,0,0,0,0,0,0,0,0
+Cristante,Roma,c,6,6,0,0,0,0,0,0,0,0,0
+El Shaarawy,Roma,c,6,6,0,0,0,0,0,0,0,0,0
+Konè M.,Roma,c,"5,5","5,5",0,0,0,0,0,0,0,0,0
+Baldanzi,Roma,c,"5,5","5,5",0,0,0,0,0,0,0,0,0
+Pisilli,Roma,c,"5,5","5,5",0,0,0,0,0,0,0,0,0
+El Aynaoui,Roma,c,6,6,0,0,0,0,0,0,0,0,0
+Dybala,Roma,a,"5,5","5,5",0,0,0,0,0,0,0,0,0
+Soulè,Roma,a,"6,5","6,5",0,0,0,0,0,0,0,0,0
+Ferguson E.,Roma,a,"5,5","5,5",0,0,0,0,0,0,0,0,0
+Muric,Sassuolo,p,7,7,0,0,0,0,0,0,0,0,0
+Walukiewicz,Sassuolo,d,"6,5","6,5",0,0,0,0,0,0,0,0,0
+Doig,Sassuolo,d,6,"5,5",0,0,0,0,0,0,0,0,0
+Coulibaly W.,Sassuolo,d,6,6,0,0,0,0,0,0,0,0,0
+Idzes,Sassuolo,d,"6,5","6,5",0,0,0,0,0,0,0,0,0
+Muharemovic,Sassuolo,d,"6,5",7,0,1,0,0,0,0,0,1,2
+Matic,Sassuolo,c,6,"5,5",0,0,0,0,0,0,0,0,0
+Vranckx,Sassuolo,c,"5,5",5,0,0,0,0,0,0,0,0,0
+Volpato,Sassuolo,c,6,"5,5",0,0,0,0,0,0,0,0,0
+Thorstvedt,Sassuolo,c,55,55,0,0,0,0,0,0,0,0,0
+Konè I.,Sassuolo,c,"5,5","5,5",0,0,0,0,0,0,0,0,0
+Fadera,Sassuolo,c,7,10,1,0,0,0,0,0,0,0,3
+Berardi,Sassuolo,a,"6,5","6,5",0,0,0,0,0,0,0,0,0
+Pinamonti,Sassuolo,a,6,"5,5",0,0,0,0,0,0,0,0,0
+Laurientè,Sassuolo,a,6,6,0,0,0,0,0,0,0,0,0
+Cheddira,Sassuolo,a,55,55,0,0,0,0,0,0,0,0,0
+Israel,Torino,p,6,6,0,0,0,0,0,0,0,0,0
+Biraghi,Torino,d,6,6,0,0,0,0,0,0,0,0,0
+Lazaro,Torino,d,6,6,0,0,0,0,0,0,0,0,0
+Maripan,Torino,d,7,7,0,0,0,0,0,0,0,0,0
+Ismajli,Torino,d,6,"5,5",0,0,0,0,0,0,0,0,0
+Coco,Torino,d,"6,5","6,5",0,0,0,0,0,0,0,0,0
+Tameze,Torino,c,55,55,0,0,0,0,0,0,0,0,0
+Ilic,Torino,c,6,6,0,0,0,0,0,0,0,0,0
+Vlasic,Torino,c,"6,5","6,5",0,0,0,0,0,0,0,0,0
+Asllani,Torino,c,"6,5",6,0,0,0,0,0,0,0,0,0
+Casadei,Torino,c,6,6,0,0,0,0,0,0,0,0,0
+Anjorin,Torino,c,55,55,0,0,0,0,0,0,0,0,0
+Simeone,Torino,a,"7,5","10,5",1,0,0,0,0,0,0,1,4
+Ngonge,Torino,a,6,7,0,1,0,0,0,0,0,0,1
+Adams C.,Torino,a,6,6,0,0,0,0,0,0,0,0,0
+Aboukhlal,Torino,a,"6,5",6,0,0,0,0,0,0,0,0,0
+Sava,Udinese,p,"5,5","5,5",0,0,0,0,0,0,0,0,0
+Kamara H.,Udinese,d,"6,5",6,0,0,0,0,0,0,0,0,0
+Bertola,Udinese,d,6,6,0,0,0,0,0,0,0,0,0
+Ehizibue,Udinese,d,"5,5","5,5",0,0,0,0,0,0,0,0,0
+Zemura,Udinese,d,6,6,0,0,0,0,0,0,0,0,0
+Kristensen T.,Udinese,d,7,7,0,0,0,0,0,0,0,0,0
+Goglichidze,Udinese,d,6,6,0,0,0,0,0,0,0,0,0
+Solet,Udinese,d,"6,5","6,5",0,0,0,0,0,0,0,0,0
+Zaniolo,Udinese,c,"5,5","5,5",0,0,0,0,0,0,0,0,0
+Zarraga,Udinese,c,6,6,0,0,0,0,0,0,0,0,0
+Karlstrom,Udinese,c,6,"5,5",0,0,0,0,0,0,0,0,0
+Atta,Udinese,c,7,7,0,0,0,0,0,0,0,0,0
+Piotrowski,Udinese,c,"6,5","6,5",0,0,0,0,0,0,0,0,0
+Davis K.,Udinese,a,6,6,0,0,0,0,0,0,0,0,0
+Bravo,Udinese,a,7,10,1,0,0,0,0,0,0,1,4
+Buksa,Udinese,a,6,6,0,0,0,0,0,0,0,0,0
+Montipò,Verona,p,6,6,0,0,0,0,0,0,0,0,0
+Bradaric,Verona,d,"6,5","6,5",0,0,0,0,0,0,0,0,0
+Frese,Verona,d,6,6,0,0,0,0,0,0,0,0,0
+Unai Nunez,Verona,d,"6,5","6,5",0,0,0,0,0,0,0,0,0
+Nelsson,Verona,d,6,6,0,0,0,0,0,0,0,0,0
+Belghali,Verona,d,6,6,0,0,0,0,0,0,0,0,0
+Bella-Kotchap,Verona,d,6,6,0,0,0,0,0,0,0,0,0
+Gagliardini,Verona,c,6,6,0,0,0,0,0,0,0,0,0
+Akpa Akpro,Verona,c,6,6,0,0,0,0,0,0,0,0,0
+Niasse,Verona,c,6,6,0,0,0,0,0,0,0,0,0
+Serdar,Verona,c,7,"6,5",0,0,0,0,0,0,0,0,0
+Al-Musrati,Verona,c,55,55,0,0,0,0,0,0,0,0,0
+Bernede,Verona,c,"6,5","6,5",0,0,0,0,0,0,0,0,0
+Sarr A.,Verona,a,6,6,0,0,0,0,0,0,0,0,0
+Orban G.,Verona,a,6,6,0,0,0,0,0,0,0,0,0
+Giovane,Verona,a,6,"5,5",0,0,0,0,0,0,0,1,1
