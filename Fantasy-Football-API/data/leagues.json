@@ -1,0 +1,61 @@
+{
+  "6cca1c91-524c-44d7-9478-f322dd847152": {
+    "id": "6cca1c91-524c-44d7-9478-f322dd847152",
+    "name": "Test Championship League",
+    "teams": [
+      {
+        "name": "Team Alpha",
+        "owner": "Player1",
+        "roster": []
+      },
+      {
+        "name": "Team Beta",
+        "owner": "Player2",
+        "roster": []
+      }
+    ],
+    "competitions": [
+      {
+        "name": "Main Competition",
+        "type": "CHAMPIONSHIP",
+        "participants": [],
+        "settings": {
+          "start_day": 1,
+          "end_day": 38
+        }
+      }
+    ],
+    "settings": {
+      "start_day": 1,
+      "max_budget": 500,
+      "max_players_per_role": {
+        "P": 3,
+        "D": 8,
+        "C": 8,
+        "A": 6
+      }
+    }
+  },
+  "429b3e7a-8bf2-477e-be22-9bab1c8ab013": {
+    "id": "429b3e7a-8bf2-477e-be22-9bab1c8ab013",
+    "name": "FANTAstico",
+    "teams": [
+      {
+        "name": "FC++",
+        "owner": "Nino",
+        "roster": []
+      }
+    ],
+    "competitions": [],
+    "settings": {
+      "max_budget": 500,
+      "max_players_per_role": {
+        "A": 6,
+        "C": 8,
+        "D": 8,
+        "P": 3
+      },
+      "start_day": 1
+    }
+  }
+}
