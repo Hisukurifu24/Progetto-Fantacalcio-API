@@ -193,6 +193,36 @@ def _get_all_leagues() -> List[League]:
     leagues = _load_leagues()
     return [League(**league_data) for league_data in leagues.values()]
 
+def _delete_league_by_id(league_id: str) -> bool:
+    """Delete a league by its ID. Returns True if deleted, False if not found."""
+    leagues = _load_leagues()
+    if league_id in leagues:
+        del leagues[league_id]
+        _save_leagues(leagues)
+        return True
+    return False
+
+def _update_league_by_id(league_id: str, league_data: LeagueCreate) -> Optional[League]:
+    """Update an existing league by its ID. Returns updated league or None if not found."""
+    leagues = _load_leagues()
+    if league_id not in leagues:
+        return None
+    
+    # Create updated league object with existing ID
+    updated_league = League(
+        id=league_id,
+        name=league_data.name,
+        teams=league_data.teams,
+        competitions=league_data.competitions,
+        settings=league_data.settings
+    )
+    
+    # Save to storage
+    leagues[league_id] = updated_league.model_dump()
+    _save_leagues(leagues)
+    
+    return updated_league
+
 # Scraper timestamp functions
 def _load_scraper_timestamps() -> Dict[str, str]:
     """Load scraper timestamps from storage"""
@@ -261,6 +291,32 @@ async def get_league(league_id: str):
         raise
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error retrieving league: {str(e)}")
+
+@app.delete("/api/leagues/{league_id}")
+async def delete_league(league_id: str):
+    """Delete a specific fantasy league by ID"""
+    try:
+        deleted = _delete_league_by_id(league_id)
+        if not deleted:
+            raise HTTPException(status_code=404, detail="League not found")
+        return {"message": f"League {league_id} deleted successfully"}
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error deleting league: {str(e)}")
+
+@app.put("/api/leagues/{league_id}", response_model=League)
+async def update_league(league_id: str, league_data: LeagueCreate):
+    """Update/save an existing fantasy league by ID"""
+    try:
+        updated_league = _update_league_by_id(league_id, league_data)
+        if updated_league is None:
+            raise HTTPException(status_code=404, detail="League not found")
+        return updated_league
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error updating league: {str(e)}")
 
 @app.get("/api/get_listone")
 async def get_listone():
