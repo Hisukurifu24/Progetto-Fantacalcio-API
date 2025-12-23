@@ -19,5 +19,19 @@
     "email": "f.naletto@outlook.coms",
     "password_hash": "b0d2d67c387bf2cd75a6b20c86a2e6a4433f0d25a8020f4a94553e3c06b69dbb",
     "created_at": "2025-09-23T15:17:15.481127"
+  },
+  "90ddd808-2613-4929-9668-8a27f08ab8f6": {
+    "id": "90ddd808-2613-4929-9668-8a27f08ab8f6",
+    "username": "testuser",
+    "email": "test@example.com",
+    "password_hash": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f",
+    "created_at": "2025-12-17T14:39:56.313211"
+  },
+  "6f87eac7-572d-4dfc-9851-1cc4dd40dbcb": {
+    "id": "6f87eac7-572d-4dfc-9851-1cc4dd40dbcb",
+    "username": "test1",
+    "email": "test1",
+    "password_hash": "bcb15f821479b4d5772bd0ca866c00ad5f926e3580720659cc80d39c9d09802a",
+    "created_at": "2025-12-17T23:16:58.039139"
   }
 }
