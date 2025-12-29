@@ -1,9 +1,0 @@
-__pycache__
-*.pyc
-.env
-.vscode
-.git
-.gitignore
-data
-Estrai listone/data
-Estrai voti/data
