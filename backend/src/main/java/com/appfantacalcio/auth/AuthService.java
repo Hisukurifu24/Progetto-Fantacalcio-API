@@ -1,3 +1,15 @@
+package com.appfantacalcio.auth;
+
+import com.appfantacalcio.auth.dto.AuthResponse;
+import com.appfantacalcio.auth.dto.LoginRequest;
+import com.appfantacalcio.auth.dto.SignupRequest;
+import com.appfantacalcio.user.UserRole;
+import com.appfantacalcio.user.User;
+import com.appfantacalcio.user.UserRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+
 @Service
 @RequiredArgsConstructor
 public class AuthService {
@@ -10,7 +22,7 @@ public class AuthService {
         User user = new User();
         user.setUsername(req.username());
         user.setPassword(encoder.encode(req.password()));
-        user.setRole(Role.USER);
+        user.setRole(UserRole.USER);
         userRepository.save(user);
 
         return new AuthResponse(jwtService.generateToken(user));
