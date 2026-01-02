@@ -10,7 +10,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.UUID;
 
 @Entity
 @Table(name = "users")
@@ -20,6 +19,9 @@ public class User extends BaseEntity implements UserDetails {
 
     @Column(unique = true, nullable = false)
     private String username;
+
+    @Column(unique = true)
+    private String email;
 
     @Column(nullable = false)
     private String password;
@@ -51,6 +53,5 @@ public class User extends BaseEntity implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
-
 
 }

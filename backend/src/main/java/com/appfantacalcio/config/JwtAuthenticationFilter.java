@@ -16,6 +16,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
 import java.util.Optional;
 import java.util.UUID;
+import io.jsonwebtoken.JwtException;
 
 @Component
 @RequiredArgsConstructor
@@ -24,20 +25,32 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private final UserRepository userRepository;
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+            throws ServletException, IOException {
         String authHeader = request.getHeader("Authorization");
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
             filterChain.doFilter(request, response);
             return;
         }
 
-        String token = authHeader.substring(7);
-        UUID userId = jwtService.extractUserId(token);
+        String token = authHeader.substring(7).trim();
 
-        Optional<User> user = userRepository.findById(userId);
+        UUID userId = null;
+        try {
+            if (!token.isEmpty() && token.chars().filter(ch -> ch == '.').count() == 2) {
+                userId = jwtService.extractUserId(token);
+            } else {
+                // not a valid JWT structure, skip authentication
+            }
+        } catch (JwtException | IllegalArgumentException e) {
+            // Invalid token — skip authentication and continue filter chain
+        }
+
+        Optional<User> user = userId != null ? userRepository.findById(userId) : Optional.empty();
 
         if (user.isPresent()) {
-            UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(user.get(), null, user.get().getAuthorities());
+            UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(user.get(),
+                    null, user.get().getAuthorities());
             SecurityContextHolder.getContext().setAuthentication(authentication);
         }
 

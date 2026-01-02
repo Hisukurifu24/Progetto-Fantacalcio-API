@@ -1,3 +1,5 @@
+package com.appfantacalcio.competition;
+
 import java.util.List;
 import java.util.UUID;
 
@@ -9,8 +11,9 @@ import com.appfantacalcio.league.LeagueRepository;
 import com.appfantacalcio.match.Match;
 import com.appfantacalcio.match.MatchRepository;
 import com.appfantacalcio.team.Team;
+import com.appfantacalcio.team.TeamRepository;
 
-import jakarta.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
 
 @Service

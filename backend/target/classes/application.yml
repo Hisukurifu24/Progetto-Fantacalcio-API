@@ -6,9 +6,9 @@ spring:
     name: app-fantacalcio
 
   datasource:
-    url: ${DB_URL}
-    username: ${DB_USER}
-    password: ${DB_PASS}
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/app_fantacalcio}
+    username: ${DB_USER:postgres}
+    password: ${DB_PASS:postgres}
 
   jpa:
     hibernate:

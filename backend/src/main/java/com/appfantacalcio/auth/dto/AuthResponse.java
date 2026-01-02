@@ -1,4 +1,6 @@
 package com.appfantacalcio.auth.dto;
 
-public record AuthResponse(String token) {
+import com.appfantacalcio.user.dto.UserResponse;
+
+public record AuthResponse(String token, UserResponse user) {
 }

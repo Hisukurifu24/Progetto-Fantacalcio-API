@@ -20,6 +20,10 @@ public class Player {
     private String role;
     private String realTeam;
 
-    private int quotazioneClassico;
-    private int quotazioneMantra;
+    private Integer quotazioneInizialeClassico;
+    private Integer quotazioneAttualeClassico;
+    private Integer quotazioneInizialeMantra;
+    private Integer quotazioneAttualeMantra;
+    private Integer fvmClassico;
+    private Integer fvmMantra;
 }

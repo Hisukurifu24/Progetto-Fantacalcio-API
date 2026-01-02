@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: app-fantacalcio-db
+    environment:
+      - POSTGRES_DB=app_fantacalcio
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  backend:
+    build: .
+    container_name: app-fantacalcio-backend
+    ports:
+      - "8080:8080"
+    environment:
+      - DB_URL=jdbc:postgresql://db:5432/app_fantacalcio
+      - DB_USER=postgres
+      - DB_PASS=postgres
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
