@@ -1,7 +1,7 @@
 package com.appfantacalcio.competition;
 
 public enum CompetitionType {
-	LEAGUE, // campionato
+	CHAMPIONSHIP, // campionato
 	CUP, // coppa
 	GROUP_CUP, // coppa a gironi
 	POINTS, // competizione a punti

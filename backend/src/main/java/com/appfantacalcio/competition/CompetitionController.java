@@ -30,6 +30,11 @@ public class CompetitionController {
 		return competitionService.create(leagueId, req);
 	}
 
+	@GetMapping("/leagues/{leagueId}/competitions")
+	public List<Competition> list(@PathVariable UUID leagueId) {
+		return competitionService.findByLeagueId(leagueId);
+	}
+
 	@DeleteMapping("/competitions/{id}")
 	public void delete(@PathVariable UUID id) {
 		competitionService.delete(id);

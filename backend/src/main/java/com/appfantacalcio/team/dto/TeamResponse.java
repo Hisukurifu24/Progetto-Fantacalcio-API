@@ -6,10 +6,11 @@ import java.util.List;
 import java.util.UUID;
 
 public record TeamResponse(
-    UUID id,
-    String name,
-    UserResponse owner,
-    @JsonProperty("owner_id") UUID ownerId,
-    @JsonProperty("league_id") UUID leagueId,
-    List<Object> roster
-) {}
+        UUID id,
+        String name,
+        @JsonProperty("coach_name") String coachName,
+        UserResponse owner,
+        @JsonProperty("owner_id") UUID ownerId,
+        @JsonProperty("league_id") UUID leagueId,
+        List<Object> roster) {
+}

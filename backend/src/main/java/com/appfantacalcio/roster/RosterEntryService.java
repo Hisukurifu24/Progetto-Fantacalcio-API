@@ -58,11 +58,11 @@ public class RosterEntryService {
         return new RosterEntryResponse(
                 entry.getId(),
                 entry.getTeam().getId(),
-                toPlayerResponse(entry.getPlayer()),
+                toPlayerResponse(entry.getPlayer(), entry.getTeam().getName()),
                 entry.getAcquiredFor());
     }
 
-    private PlayerResponse toPlayerResponse(Player player) {
+    private PlayerResponse toPlayerResponse(Player player, String fantaSquadra) {
         return new PlayerResponse(
                 player.getId(),
                 player.getName(),
@@ -73,6 +73,7 @@ public class RosterEntryService {
                 player.getQuotazioneInizialeMantra(),
                 player.getQuotazioneAttualeMantra(),
                 player.getFvmClassico(),
-                player.getFvmMantra());
+                player.getFvmMantra(),
+                fantaSquadra);
     }
 }

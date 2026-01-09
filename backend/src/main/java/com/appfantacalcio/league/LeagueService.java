@@ -1,8 +1,11 @@
 package com.appfantacalcio.league;
 
+import com.appfantacalcio.competition.Competition;
+import com.appfantacalcio.competition.CompetitionRepository;
 import com.appfantacalcio.user.dto.UserResponse;
 import com.appfantacalcio.exception.ResourceNotFoundException;
 import com.appfantacalcio.league.dto.CreateLeagueRequest;
+import com.appfantacalcio.league.dto.UpdateLeagueRequest;
 import com.appfantacalcio.league.dto.LeagueResponse;
 import com.appfantacalcio.player.Player;
 import com.appfantacalcio.player.PlayerRepository;
@@ -20,6 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -36,6 +40,7 @@ public class LeagueService {
     private final UserRepository userRepository;
     private final PlayerRepository playerRepository;
     private final RosterEntryRepository rosterEntryRepository;
+    private final CompetitionRepository competitionRepository;
 
     public LeagueResponse create(CreateLeagueRequest request) {
         User currentUser = userService.getCurrentUser();
@@ -47,6 +52,27 @@ public class LeagueService {
         league.setPublic(request.isPublic());
         league.setCreatedBy(managedUser);
         league.setInviteCode(generateInviteCode());
+
+        if (request.settings() != null) {
+            league.setStartDay(request.settings().startDay());
+            league.setMaxBudget(request.settings().maxBudget());
+
+            if (request.settings().maxPlayersPerRole() != null) {
+                league.setMaxPlayersPerRole(request.settings().maxPlayersPerRole());
+            } else {
+                league.setMaxPlayersPerRole(Map.of("P", 3, "D", 8, "C", 8, "A", 6));
+            }
+
+            if (request.settings().benchLimits() != null) {
+                league.setBenchLimits(request.settings().benchLimits());
+            } else {
+                league.setBenchLimits(Map.of("P", 1, "D", 3, "C", 3, "A", 3));
+            }
+        } else {
+            league.setMaxPlayersPerRole(Map.of("P", 3, "D", 8, "C", 8, "A", 6));
+            league.setBenchLimits(Map.of("P", 1, "D", 3, "C", 3, "A", 3));
+        }
+
         // Use a mutable Set
         league.setMembers(new HashSet<>(Set.of(managedUser)));
         League savedLeague = leagueRepository.save(league);
@@ -54,13 +80,15 @@ public class LeagueService {
         // Extract team name from the request - prefer teams array if present, otherwise
         // use teamName
         String teamName = null;
+        String coachName = null;
         if (request.teams() != null && !request.teams().isEmpty()) {
             teamName = request.teams().get(0).name();
+            coachName = request.teams().get(0).coachName();
         } else if (request.teamName() != null) {
             teamName = request.teamName();
         }
 
-        createTeam(managedUser, savedLeague, teamName);
+        createTeam(managedUser, savedLeague, teamName, coachName);
 
         return toLeagueResponse(savedLeague);
     }
@@ -118,7 +146,7 @@ public class LeagueService {
 
         league.getMembers().add(user);
         leagueRepository.save(league);
-        createTeam(user, league, teamName);
+        createTeam(user, league, teamName, managerName);
 
         return toLeagueResponse(league);
     }
@@ -143,6 +171,37 @@ public class LeagueService {
         teamRepository.deleteAll(userTeams);
     }
 
+    public LeagueResponse update(UUID id, UpdateLeagueRequest request) {
+        User currentUser = userService.getCurrentUser();
+        League league = leagueRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("League not found with id: " + id));
+
+        if (!league.getCreatedBy().getId().equals(currentUser.getId())) {
+            throw new IllegalStateException("Only the league creator can update the league");
+        }
+
+        if (request.name() != null) {
+            league.setName(request.name());
+        }
+
+        if (request.settings() != null) {
+            if (request.settings().startDay() != null) {
+                league.setStartDay(request.settings().startDay());
+            }
+            if (request.settings().maxBudget() != null) {
+                league.setMaxBudget(request.settings().maxBudget());
+            }
+            if (request.settings().maxPlayersPerRole() != null) {
+                league.setMaxPlayersPerRole(request.settings().maxPlayersPerRole());
+            }
+            if (request.settings().benchLimits() != null) {
+                league.setBenchLimits(request.settings().benchLimits());
+            }
+        }
+
+        return toLeagueResponse(leagueRepository.save(league));
+    }
+
     public void delete(UUID leagueId) {
         User currentUser = userService.getCurrentUser();
 
@@ -154,6 +213,10 @@ public class LeagueService {
             throw new IllegalStateException("Only the league creator can delete the league");
         }
 
+        // Elimina tutti i roster entries della lega
+        List<RosterEntry> rosterEntries = rosterEntryRepository.findByTeamLeagueId(leagueId);
+        rosterEntryRepository.deleteAll(rosterEntries);
+
         // Elimina tutti i team della lega
         List<Team> teams = teamRepository.findByLeagueId(leagueId);
         teamRepository.deleteAll(teams);
@@ -162,9 +225,10 @@ public class LeagueService {
         leagueRepository.delete(league);
     }
 
-    private void createTeam(User user, League league, String teamName) {
+    private void createTeam(User user, League league, String teamName, String coachName) {
         Team team = new Team();
         team.setName(teamName != null && !teamName.isBlank() ? teamName : "Team " + user.getUsername());
+        team.setCoachName(coachName != null && !coachName.isBlank() ? coachName : user.getUsername());
         team.setOwner(user);
         team.setLeague(league);
         teamRepository.save(team);
@@ -183,6 +247,7 @@ public class LeagueService {
 
     private LeagueResponse toLeagueResponse(League league) {
         List<Team> teams = teamRepository.findByLeagueId(league.getId());
+        List<Competition> competitions = competitionRepository.findByLeagueId(league.getId());
         return new LeagueResponse(
                 league.getId(),
                 league.getName(),
@@ -190,7 +255,8 @@ public class LeagueService {
                 league.getInviteCode(),
                 toUserResponse(league.getCreatedBy()),
                 league.getMembers().stream().map(this::toUserResponse).collect(Collectors.toSet()),
-                teams.stream().map(this::toTeamResponse).collect(Collectors.toList()));
+                teams.stream().map(this::toTeamResponse).collect(Collectors.toList()),
+                competitions);
     }
 
     private UserResponse toUserResponse(User user) {
@@ -218,13 +284,15 @@ public class LeagueService {
                             player.getQuotazioneInizialeMantra(),
                             player.getQuotazioneAttualeMantra(),
                             player.getFvmClassico(),
-                            player.getFvmMantra());
+                            player.getFvmMantra(),
+                            team.getName());
                 })
                 .collect(Collectors.toList());
 
         return new com.appfantacalcio.team.dto.TeamResponse(
                 team.getId(),
                 team.getName(),
+                team.getCoachName(),
                 toUserResponse(team.getOwner()),
                 team.getOwner().getId(),
                 team.getLeague().getId(),
@@ -269,6 +337,23 @@ public class LeagueService {
             if (rosterEntryRepository.findByTeamIdAndPlayerId(t.getId(), player.getId()).isPresent()) {
                 log.error("Player {} is already assigned to team {}", playerName, t.getName());
                 throw new IllegalStateException("Player is already assigned to another team in this league");
+            }
+        }
+
+        // Check max players per role limit
+        if (league.getMaxPlayersPerRole() != null) {
+            String role = player.getRole();
+            Integer limit = league.getMaxPlayersPerRole().get(role);
+
+            if (limit != null) {
+                long currentCount = rosterEntryRepository.findByTeamId(team.getId()).stream()
+                        .filter(entry -> entry.getPlayer().getRole().equals(role))
+                        .count();
+
+                if (currentCount >= limit) {
+                    throw new IllegalStateException(
+                            "Roster limit reached for role: " + role + ". Max allowed: " + limit);
+                }
             }
         }
 

@@ -29,9 +29,9 @@ public class PlayerController {
         // If any filter is specified, use the filtered method
         if (role != null || search != null || team != null ||
                 minQuotazione != null || maxQuotazione != null ||
-                minFvm != null || maxFvm != null || sortBy != null) {
+                minFvm != null || maxFvm != null || sortBy != null || leagueId != null || freeAgentsOnly != null) {
             return playerService.findByFilters(
-                    role, search, team, minQuotazione, maxQuotazione, minFvm, maxFvm, sortBy);
+                    role, search, team, minQuotazione, maxQuotazione, minFvm, maxFvm, sortBy, leagueId, freeAgentsOnly);
         }
 
         return playerService.findAll();

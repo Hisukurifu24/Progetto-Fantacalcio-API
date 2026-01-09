@@ -6,21 +6,21 @@ import java.util.Map;
 import java.util.UUID;
 
 public record CreateLeagueRequest(
-        String name,
-        @JsonProperty("is_public") boolean isPublic,
-        String teamName,
-        List<TeamData> teams,
-        List<Object> competitions,
-        Settings settings) {
+                String name,
+                @JsonProperty("is_public") boolean isPublic,
+                String teamName,
+                List<TeamData> teams,
+                List<Object> competitions,
+                Settings settings) {
 
-    public record TeamData(String name, UUID owner, List<Object> roster) {
-    }
+        public record TeamData(String name, @JsonProperty("coach_name") String coachName, UUID owner,
+                        List<Object> roster) {
+        }
 
-    public record Settings(
-            @JsonProperty("start_day") Integer startDay,
-            @JsonProperty("max_budget") Integer maxBudget,
-            @JsonProperty("max_players_per_role") Map<String, Integer> maxPlayersPerRole,
-            @JsonProperty("bench_limits") Map<String, Integer> benchLimits) {
-    }
+        public record Settings(
+                        @JsonProperty("start_day") Integer startDay,
+                        @JsonProperty("max_budget") Integer maxBudget,
+                        @JsonProperty("max_players_per_role") Map<String, Integer> maxPlayersPerRole,
+                        @JsonProperty("bench_limits") Map<String, Integer> benchLimits) {
+        }
 }
-

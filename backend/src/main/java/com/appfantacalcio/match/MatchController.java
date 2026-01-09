@@ -29,6 +29,11 @@ public class MatchController {
         return ResponseEntity.ok(matchService.getMatchesByCompetitionId(competitionId));
     }
 
+    @GetMapping("/live/{competitionId}")
+    public ResponseEntity<Object> getLiveMatch(@PathVariable UUID competitionId, java.security.Principal principal) {
+        return ResponseEntity.ok(matchService.getLiveMatch(competitionId, principal.getName()));
+    }
+
     @PostMapping
     public ResponseEntity<Match> createMatch(@RequestBody Match match) {
         return ResponseEntity.ok(matchService.createMatch(match));

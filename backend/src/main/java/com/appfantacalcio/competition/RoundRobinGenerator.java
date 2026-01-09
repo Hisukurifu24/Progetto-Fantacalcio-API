@@ -12,36 +12,50 @@ public class RoundRobinGenerator {
 			List<Team> teams,
 			Competition competition) {
 		List<Match> result = new ArrayList<>();
+		List<List<Match>> rounds = generateRounds(teams);
 
+		int matchDay = competition.getStartDay();
+		for (List<Match> round : rounds) {
+			for (Match m : round) {
+				m.setCompetition(competition);
+				m.setMatchDay(matchDay);
+				result.add(m);
+			}
+			matchDay++;
+		}
+		return result;
+	}
+
+	public static List<List<Match>> generateRounds(List<Team> teams) {
+		List<List<Match>> rounds = new ArrayList<>();
 		List<Team> list = new ArrayList<>(teams);
 		if (list.size() % 2 != 0)
 			list.add(null); // bye
 
 		int n = list.size();
 		int days = n - 1;
-		int matchDay = competition.getStartDay();
 
 		for (int day = 0; day < days; day++) {
+			List<Match> roundMatches = new ArrayList<>();
 			for (int i = 0; i < n / 2; i++) {
 				Team home = list.get(i);
 				Team away = list.get(n - 1 - i);
 
 				if (home != null && away != null) {
 					Match m = new Match();
-					m.setCompetition(competition);
+					// Competition and MatchDay will be set by caller
 					m.setHomeTeam(home);
 					m.setAwayTeam(away);
-					m.setMatchDay(matchDay);
-					result.add(m);
+					roundMatches.add(m);
 				}
 			}
+			rounds.add(roundMatches);
 
 			// rotate (keep first fixed)
 			Team fixed = list.remove(1);
 			list.add(fixed);
-			matchDay++;
 		}
 
-		return result;
+		return rounds;
 	}
 }

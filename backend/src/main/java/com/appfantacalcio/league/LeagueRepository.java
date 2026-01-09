@@ -10,6 +10,8 @@ import java.util.UUID;
 public interface LeagueRepository extends JpaRepository<League, UUID> {
     Optional<League> findByInviteCode(String inviteCode);
 
+    Optional<League> findByName(String name);
+
     @org.springframework.data.jpa.repository.Query("SELECT DISTINCT l FROM League l LEFT JOIN FETCH l.members LEFT JOIN FETCH l.createdBy WHERE :user MEMBER OF l.members")
     List<League> findAllByMembersContaining(@org.springframework.data.repository.query.Param("user") User user);
 

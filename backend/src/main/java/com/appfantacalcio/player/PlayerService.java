@@ -2,11 +2,15 @@ package com.appfantacalcio.player;
 
 import com.appfantacalcio.player.dto.PlayerResponse;
 import com.appfantacalcio.exception.ResourceNotFoundException;
+import com.appfantacalcio.roster.RosterEntry;
+import com.appfantacalcio.roster.RosterEntryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -15,6 +19,7 @@ import java.util.stream.Collectors;
 public class PlayerService {
 
     private final PlayerRepository playerRepository;
+    private final RosterEntryRepository rosterEntryRepository;
 
     public List<PlayerResponse> findAll() {
         return playerRepository.findAll().stream()
@@ -30,12 +35,28 @@ public class PlayerService {
             Integer maxQuotazione,
             Integer minFvm,
             Integer maxFvm,
-            String sortBy) {
+            String sortBy,
+            UUID leagueId,
+            Boolean freeAgentsOnly) {
         List<Player> players = playerRepository.findByFilters(
                 role, search, team, minQuotazione, maxQuotazione, minFvm, maxFvm);
 
+        Map<UUID, String> playerOwners = new HashMap<>();
+        if (leagueId != null) {
+            List<RosterEntry> rosterEntries = rosterEntryRepository.findByTeamLeagueId(leagueId);
+            for (RosterEntry entry : rosterEntries) {
+                playerOwners.put(entry.getPlayer().getId(), entry.getTeam().getName());
+            }
+        }
+
+        if (Boolean.TRUE.equals(freeAgentsOnly) && leagueId != null) {
+            players = players.stream()
+                    .filter(p -> !playerOwners.containsKey(p.getId()))
+                    .collect(Collectors.toList());
+        }
+
         List<PlayerResponse> responses = players.stream()
-                .map(this::toPlayerResponse)
+                .map(p -> toPlayerResponse(p, playerOwners.get(p.getId())))
                 .collect(Collectors.toList());
 
         // Apply sorting
@@ -70,6 +91,10 @@ public class PlayerService {
     }
 
     private PlayerResponse toPlayerResponse(Player player) {
+        return toPlayerResponse(player, null);
+    }
+
+    private PlayerResponse toPlayerResponse(Player player, String fantaSquadra) {
         return new PlayerResponse(
                 player.getId(),
                 player.getName(),
@@ -80,6 +105,7 @@ public class PlayerService {
                 player.getQuotazioneInizialeMantra(),
                 player.getQuotazioneAttualeMantra(),
                 player.getFvmClassico(),
-                player.getFvmMantra());
+                player.getFvmMantra(),
+                fantaSquadra);
     }
 }
