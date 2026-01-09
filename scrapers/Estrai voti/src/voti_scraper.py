@@ -17,140 +17,324 @@ except ImportError:
 from bs4 import BeautifulSoup
 import csv
 import os
+import re
+import sys
+
+# Import Live API
+try:
+    from live_api import FantacalcioLiveAPI
+except ImportError:
+    # try relative import if running as script
+    sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+    from live_api import FantacalcioLiveAPI
 
 # Ottieni il percorso della directory principale del progetto
 script_dir = os.path.dirname(os.path.abspath(__file__))
 project_dir = os.path.dirname(script_dir)
 data_dir = os.path.join(project_dir, 'data')
 
+# Assicurati che la directory data esista
+os.makedirs(data_dir, exist_ok=True)
+
 # URL della pagina da scaricare
 URL = "https://www.fantacalcio.it/voti-fantacalcio-serie-a"
+CALENDAR_URL = "https://www.fantacalcio.it/serie-a/calendario"
+
 OUTPUT_CSV = os.path.join(data_dir, "voti_fantacalcio.csv")
 HTML_BACKUP = os.path.join(data_dir, "fantacalcio.html")
 
-def download_page():
-    """Scarica la pagina web e salva l'HTML come backup"""
-    print("Scaricando la pagina da Fantacalcio.it...")
-    
-    headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
-    }
-    
+HEADERS = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+}
+
+def download_page(url, backup_path=None):
+    """Scarica la pagina web"""
+    print(f"Scaricando: {url}...")
     try:
-        response = requests.get(URL, headers=headers, timeout=30)
+        response = requests.get(url, headers=HEADERS, timeout=30)
         response.raise_for_status()
         
-        # Salva l'HTML come backup
-        with open(HTML_BACKUP, 'w', encoding='utf-8') as file:
-            file.write(response.text)
+        if backup_path:
+            with open(backup_path, 'w', encoding='utf-8') as file:
+                file.write(response.text)
         
-        print(f"Pagina scaricata e salvata in {HTML_BACKUP}")
         return response.text
-        
     except requests.RequestException as e:
-        print(f"Errore durante il download: {e}")
-        # Prova a usare il file di backup se esiste
-        if os.path.exists(HTML_BACKUP):
-            print(f"Uso il file di backup: {HTML_BACKUP}")
-            with open(HTML_BACKUP, 'r', encoding='utf-8') as file:
-                return file.read()
-        else:
-            print("Nessun file di backup disponibile!")
-            return None
+        print(f"Errore durante il download di {url}: {e}")
+        return None
 
-def main():
-    # Scarica la pagina web
-    html_content = download_page()
-    if not html_content:
-        print("Impossibile ottenere il contenuto HTML!")
-        return
-
-    # Analizza l'HTML con BeautifulSoup
+def parse_votes_main_page(html_content, giornata):
+    """Parsing della pagina voti classica (tabulare)"""
     soup = BeautifulSoup(html_content, 'html.parser')
-
-    # Trova TUTTE le tabelle con i voti
     tables = soup.find_all('table', class_='grades-table')
-    print(f"Trovate {len(tables)} tabelle dei voti")
+    print(f"Trovate {len(tables)} tabelle dei voti nel sito principale")
 
     voti_data = []
-
-    for table_num, table in enumerate(tables, 1):
-        print(f"Analizzando tabella {table_num}...")
-        
-        # Trova il nome della squadra dalla div team-info
-        team_info = table.find('div', class_='team-info')
-        squadra = "N/A"
-        if team_info:
-            team_link = team_info.find('a', class_='team-name')
-            if team_link:
-                squadra = team_link.get_text(strip=True)
-        
-        # Trova tutte le righe della tabella (escludendo l'header)
-        rows = table.find('tbody').find_all('tr') if table.find('tbody') else table.find_all('tr')[1:]
-        
-        for row in rows:
-            # Trova il nome del giocatore
-            player_link = row.find('a', class_='player-link')
-            if player_link:
-                nome_span = player_link.find('span')
-                nome = nome_span.get_text(strip=True) if nome_span else ''
-                
-                # Trova il ruolo
-                role_span = row.find('span', class_='role')
-                ruolo = role_span.get('data-value', '') if role_span else ''
-                
-                # Trova i voti (primo voto disponibile)
-                grade_span = row.find('span', class_='player-grade')
-                voto = grade_span.get('data-value', '') if grade_span else ''
-                
-                # Trova il fantavoto (primo fantavoto disponibile)
-                fanta_grade_span = row.find('span', class_='player-fanta-grade')
-                fantavoto = fanta_grade_span.get('data-value', '') if fanta_grade_span else ''
-                
-                # Estrai bonus e malus
-                bonus_spans = row.find_all('span', class_='player-bonus')
-                gol = assist = rigori_segnati = rigori_sbagliati = rigori_parati = gol_subiti = autoreti = motm = 0
-                
-                for bonus_span in bonus_spans:
-                    title = bonus_span.get('title', '').lower()
-                    value = int(bonus_span.get('data-value', '0') or '0')
-                    
-                    if 'gol segnati' in title:
-                        gol = value
-                    elif 'assist' in title:
-                        assist = value
-                    elif 'rigori segnati' in title:
-                        rigori_segnati = value
-                    elif 'rigori sbagliati' in title:
-                        rigori_sbagliati = -value  # Malus
-                    elif 'rigori parati' in title:
-                        rigori_parati = value
-                    elif 'gol subiti' in title:
-                        gol_subiti = -value  # Malus per portieri
-                    elif 'autoret' in title:
-                        autoreti = -value  # Malus
-                    elif 'player of the match' in title or 'motm' in title:
-                        motm = value
-                
-                # Calcola bonus/malus totali
-                bonus_totali = gol*3 + assist*1 + rigori_segnati*3 + rigori_parati*3 + rigori_sbagliati*3 + gol_subiti*1 + autoreti*2 + motm*1
-                
-                # Aggiungi i dati solo se abbiamo almeno il nome
-                if nome:
-                    voti_data.append([nome, squadra, ruolo, voto, fantavoto, gol, assist, rigori_segnati, rigori_sbagliati, rigori_parati, gol_subiti, autoreti, motm, bonus_totali])
-                    print(f"  {nome} ({squadra}) - Ruolo: {ruolo} - Voto: {voto} - Fantavoto: {fantavoto} - Bonus: {bonus_totali}")
-
-    # Scrivi i dati nel file CSV
-    with open(OUTPUT_CSV, 'w', newline='', encoding='utf-8') as f:
-        writer = csv.writer(f)
-        writer.writerow(['Nome', 'Squadra', 'Ruolo', 'Voto', 'Fantavoto', 'Gol', 'Assist', 'Rigori_Segnati', 'Rigori_Sbagliati', 'Rigori_Parati', 'Gol_Subiti', 'Autoreti', 'MOTM', 'Bonus_Totali'])
-        writer.writerows(voti_data)
     
-    print(f"Salvati {len(voti_data)} voti in {OUTPUT_CSV}")
-    if voti_data:
-        print("Primi 5 esempi:")
-        for i, row in enumerate(voti_data[:5]):
-            print(f"  {row[0]} ({row[1]}) - Ruolo: {row[2]} - Voto: {row[3]}, Fantavoto: {row[4]}, Bonus: {row[13]}")
+    for table in tables:
+        team_name = "Sconosciuta"
+        caption = table.find('caption')
+        if caption:
+            team_name = caption.get_text().strip()
+        
+        rows = table.find_all('tr')[1:] # Salta header
+        for row in rows:
+            cols = row.find_all('td')
+            if not cols: continue
+            
+            try:
+                # Struttura attesa: Ruolo, Nome, Voto, Fantavoto, Gol, Amm, Esp, ...
+                # Verificare indici reali se possibile, ma per ora usiamo euristica simile al vecchio codice o standard
+                # Standard Fantacalcio.it:
+                # 0: Ruolo, 1: Nome, 2: Voto, 3: Fantavoto
+                
+                ruolo = cols[0].get_text().strip()
+                nome = cols[1].get_text().strip()
+                voto_text = cols[2].get_text().strip()
+                fantavoto_text = cols[3].get_text().strip()
+                
+                current_row = create_vote_row(giornata, nome, team_name, ruolo, voto_text, fantavoto_text)
+                
+                # Parsing Bonus/Malus se le colonne sono note
+                # Se i dati non sono puliti, current_row ha default 0
+                
+                voti_data.append(current_row)
+            except Exception as e:
+                pass
+                
+    return voti_data
+
+def scrape_live_matches(giornata):
+    """Scraping partite live dal calendario"""
+    print(f"Avvio scansione partite LIVE per la giornata {giornata}...")
+    html = download_page(CALENDAR_URL)
+    if not html: return []
+    
+    soup = BeautifulSoup(html, 'html.parser')
+    votes_list = []
+    
+    # Cerca link: /serie-a/calendario/{giornata}/...
+    pattern = re.compile(f"/serie-a/calendario/{giornata}/")
+    links = soup.find_all('a', href=pattern)
+    
+    match_urls = set()
+    for link in links:
+        href = link['href']
+        # Validazione link partita
+        if href.count('/') >= 6:
+            full_url = "https://www.fantacalcio.it" + href if href.startswith('/') else href
+            # Rimuovi query string
+            full_url = full_url.split('?')[0]
+            match_urls.add(full_url)
+            
+    print(f"Trovate {len(match_urls)} partite per la giornata {giornata}")
+    
+    for url in match_urls:
+        # Aggiungi /voti se manca
+        if not url.endswith('/voti'):
+            url_voti = url + '/voti'
+        else:
+            url_voti = url
+            
+        print(f"Scraping voti da: {url_voti}")
+        votes_list.extend(scrape_single_live_match(url_voti, giornata))
+        
+    return votes_list
+
+def scrape_single_live_match(url, giornata):
+    print(f"Analisi match: {url}")
+    
+    # 1. Tentativo API LIVE (Protobuf)
+    try:
+        api = FantacalcioLiveAPI()
+        match_data = api.get_live_votes(url)
+        
+        if match_data:
+            print(f"[API] Dati trovati per ID {match_data['match_id']}")
+            votes = []
+            
+            # Home Team
+            for p in match_data.get('home', []):
+                # Usa create_vote_row definita globalmente
+                # Nota: create_vote_row accetta (giornata, nome, squadra, ruolo, voto, fantavoto)
+                # Qui usiamo voto=fantavoto temporaneamente
+                row = create_vote_row(giornata, p['name'], "Home", p['role'], str(p['vote']), str(p['vote']))
+                votes.append(row)
+                
+            for p in match_data.get('away', []):
+                row = create_vote_row(giornata, p['name'], "Away", p['role'], str(p['vote']), str(p['vote']))
+                votes.append(row)
+                
+            return votes
+            
+    except Exception as e:
+        print(f"[API] Errore API: {e}. Fallback to HTML...")
+
+    # 2. Fallback HTML Scraping (Legacy)
+    html = download_page(url)
+    if not html: return []
+    
+    soup = BeautifulSoup(html, 'html.parser')
+    data = []
+    
+    # Euristica per trovare le squadre e i giocatori
+    # Iteriamo su tutti gli elementi rilevanti
+    # Cerchiamo Header Squadra -> Lista Giocatori
+    
+    # Troviamo tutti i link alle squadre per capire i nomi dei team in gioco
+    # Solitamente h1 o h2 o div con classe team-name
+    # Usiamo un approccio di scansione lineare dei nodi
+    
+    current_team = "Sconosciuta"
+    
+    # Cerchiamo container principali
+    # Spesso la pagina ha due colonne per le squadre.
+    # Ma flat è più semplice da parsare se sequenziale
+    
+    all_elements = soup.find_all(['h3', 'h4', 'div', 'li', 'td'])
+    
+    for el in all_elements:
+        text = el.get_text(" ", strip=True)
+        
+        # Check se è un header di squadra (molto euristico)
+        # Se il testo è breve e non contiene numeri o "Voti"
+        if el.name in ['h3', 'h4'] and len(text) < 30 and "Voti" not in text and "Pagelle" not in text:
+            # Potrebbe essere il nome della squadra
+            # Ignoriamo label comuni
+            if text not in ["Tabellino", "Statistiche", "Notizie", "Redazione"]:
+                current_team = text
+        
+        # Check se è una riga giocatore
+        # Regex: Nome Ruolo Voto (es: Falcone P 6)
+        # O: Nome Ruolo Voto Gol ...
+        
+        # Pattern base: Nome (spazi o ' o .) + Ruolo (P,D,C,A) + Voto (numero)
+        # Escludiamo righe header (es: Nome Voto)
+        match = re.search(r'^([A-Za-zÀ-ÿ\s\'.]+?)\s+([PDCA])\s+(\d+[.,]?\d*)', text)
+        if match:
+            nome = match.group(1).strip()
+            ruolo = match.group(2)
+            voto = match.group(3).replace(',', '.')
+            
+            # Filtri anti-falso positivo
+            if nome.lower() in ["nome", "panchina", "titolari", "allenatore"]:
+                continue
+            
+            # Parsing Bonus dal testo se possibile (es: Falcone P 6 -1)
+            # Ma spesso sono icone.
+            # Proviamo a creare la riga
+            
+            vote_obj = create_vote_row(giornata, nome, current_team, ruolo, voto, voto)
+            
+            # Evita duplicati nella stessa scansione (es: tabellino vs voti)
+            # Qui si assume che stiamo parsando la sezione voti
+            data.append(vote_obj)
+
+    return data
+
+def create_vote_row(giornata, nome, squadra, ruolo, voto, fantavoto):
+    def parse_float(v):
+        try:
+            val = float(v)
+            if val > 20: return 0 # Sanity check
+            return val
+        except: return 0
+        
+    return {
+        'giornata': giornata,
+        'nome': nome,
+        'squadra': squadra,
+        'ruolo': ruolo,
+        'voto': parse_float(voto),
+        'fantavoto': parse_float(fantavoto), # Default a voto se non c'è
+        'gol': 0, 'assist': 0, 'rigori_segnati': 0, 'rigori_sbagliati': 0,
+        'rigori_parati': 0, 'gol_subiti': 0, 'autoreti': 0, 'motm': 0, 'bonus_totali': 0
+    }
+
+def save_to_csv(data):
+    if not data:
+        print("Nessun dato da salvare.")
+        return
+        
+    fieldnames = ['giornata', 'nome', 'squadra', 'ruolo', 'voto', 'fantavoto', 
+                  'gol', 'assist', 'rigori_segnati', 'rigori_sbagliati', 
+                  'rigori_parati', 'gol_subiti', 'autoreti', 'motm', 'bonus_totali']
+    
+    with open(OUTPUT_CSV, 'w', newline='', encoding='utf-8') as f:
+        writer = csv.DictWriter(f, fieldnames=fieldnames)
+        writer.writeheader()
+        for row in data:
+            writer.writerow(row)
+    print(f"Dati salvati in {OUTPUT_CSV}. Totale righe: {len(data)}")
+
+def detect_giornata(soup):
+    title_tag = soup.find('h1')
+    if title_tag:
+        text = title_tag.get_text().lower()
+        match = re.search(r'(\d+)[°\s]+giornata', text) or re.search(r'giornata\s+(\d+)', text)
+        if match:
+            return int(match.group(1))
+            
+    page_title = soup.find('title')
+    if page_title:
+        text = page_title.get_text().lower()
+        match = re.search(r'(\d+)[°\s]+giornata', text) or re.search(r'giornata\s+(\d+)', text)
+        if match:
+            return int(match.group(1))
+            
+    return 0
+
+def main():
+    # 1. Scarica pagina principale per determinare giornata e vedere se ci sono voti definitivi
+    html_main = download_page(URL, HTML_BACKUP)
+    if not html_main: return
+    
+    soup_main = BeautifulSoup(html_main, 'html.parser')
+    giornata = detect_giornata(soup_main)
+    print(f"Giornata rilevata: {giornata}")
+    
+    if giornata == 0:
+        print("Impossibile determinare giornata. Stop.")
+        return
+
+    # 2. Parsing voti definitivi
+    all_votes = parse_votes_main_page(html_main, giornata)
+    
+    # 3. Parsing voti LIVE (opzionale o integrazione)
+    # Se abbiamo pochi voti definitivi (es < 200) o se vogliamo aggiornare i live
+    # Eseguiamo sempre il live check per sicurezza in questa fase di dev
+    live_votes = scrape_live_matches(giornata)
+    
+    # 4. Merge (Priorità ai live se mancano nel main? O viceversa?)
+    # Solitamente: Main > Live per voti "ufficiali", ma Live > Main per tempestività.
+    # Creiamo un dict per merge chiave (nome, squadra)
+    
+    merged_votes = {}
+    
+    # Prima inseriamo i main (ufficiali)
+    for v in all_votes:
+        key = (v['nome'].lower(), v['squadra'].lower())
+        merged_votes[key] = v
+        
+    # Poi aggiorniamo/inseriamo i live
+    # Nota: se il main è vuoto o parziale, il live riempie.
+    # Se il live è più recente... difficile dirlo.
+    # Facciamo che il Live ha priorità se il main NON ha quel giocatore.
+    # Se il main HA il giocatore, teniamo il main (spesso più accurato con bonus finali).
+    
+    for v in live_votes:
+        key = (v['nome'].lower(), v['squadra'].lower())
+        if key not in merged_votes:
+            merged_votes[key] = v
+            # print(f"Aggiunto voto LIVE per {v['nome']}")
+        else:
+            # Opzionale: update se il voto main è nullo?
+            pass
+            
+    final_list = list(merged_votes.values())
+    print(f"Totale voti unici: {len(final_list)}")
+    
+    save_to_csv(final_list)
 
 if __name__ == "__main__":
     main()
